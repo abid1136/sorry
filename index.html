@@ -1,11 +1,5 @@
-<!doctype html>
-<html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I'm Sorry Cutie 💕</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <style>
+<style>
+/* Base Styles */
         body {
             box-sizing: border-box;
         }
@@ -24,8 +18,16 @@
             animation: gradientShift 8s ease infinite;
             overflow-x: hidden;
         }
-        img{
-            margin-left: 200px;
+        
+        /* *** FIX: Centering the Image ***
+           - Removed the problematic 'margin-left: 200px' rule.
+           - Used 'display: block' and 'margin: 0 auto' to ensure centering. 
+        */
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto; /* Center the image */
+            display: block; /* Required for margin auto to work */
         }
 
         @keyframes gradientShift {
@@ -46,6 +48,7 @@
             padding: 10px 20px;
             z-index: 1000;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
         }
 
         .nav-links {
@@ -53,6 +56,7 @@
             list-style: none;
             gap: 20px;
             align-items: center;
+            justify-content: center;
         }
 
         .nav-links a {
@@ -63,6 +67,7 @@
             border-radius: 25px;
             transition: all 0.3s ease;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -87,7 +92,7 @@
             display: none;
         }
 
-        /* Floating Hearts, Flowers, and Cats */
+        /* Floating Hearts, Flowers, and Cats - unchanged for responsiveness */
         .hearts {
             position: absolute;
             top: 0;
@@ -125,21 +130,17 @@
         /* Cute decorative elements */
         .flower-border {
             position: absolute;
-            top: 20px;
-            left: 20px;
             font-size: 2rem;
             animation: sway 3s ease-in-out infinite;
+            z-index: 50;
         }
 
-        .flower-border.right {
-            left: auto;
-            right: 20px;
-        }
+        /* Positioning for flower borders */
+        .flower-border:nth-child(2) { top: 20px; left: 20px; }
+        .flower-border:nth-child(3) { top: 20px; right: 20px; left: auto; }
+        .flower-border:nth-child(4) { bottom: 20px; left: 20px; top: auto; }
+        .flower-border:nth-child(5) { bottom: 20px; right: 20px; left: auto; top: auto; }
 
-        .flower-border.bottom {
-            top: auto;
-            bottom: 20px;
-        }
 
         @keyframes sway {
             0%, 100% { transform: rotate(-5deg); }
@@ -149,6 +150,7 @@
         /* Cat apology page styles */
         .cat-apology-container {
             max-width: 800px;
+            width: 90%;
             background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 30px;
@@ -158,10 +160,18 @@
         }
 
         .cat-with-flowers {
-            font-size: 8rem;
             margin: 30px 0;
             animation: catBounce 2s ease-in-out infinite;
         }
+        
+        /* Adjusted image size within container for mobile */
+        .cat-with-flowers img {
+             width: 300px;
+             max-width: 100%;
+             height: auto;
+             margin: 0 auto;
+        }
+
 
         @keyframes catBounce {
             0%, 100% { transform: translateY(0px); }
@@ -192,6 +202,15 @@
         }
 
         /* Home Page */
+        .home-content {
+            width: 90%;
+            max-width: 700px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
         .home-content h1 {
             font-size: 4rem;
             color: #ff6b9d;
@@ -211,6 +230,8 @@
             color: #666;
             margin-bottom: 30px;
             max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cute-button {
@@ -225,6 +246,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            margin: 5px;
         }
 
         .cute-button:hover {
@@ -235,6 +257,7 @@
         /* Apology Page */
         .apology-content {
             max-width: 800px;
+            width: 90%;
             background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 30px;
@@ -274,7 +297,7 @@
             75% { transform: rotate(5deg); }
         }
 
-        /* Memories Page */
+        /* Memories Page - Not visible in HTML, but kept for completeness */
         .memory-card {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
@@ -301,7 +324,7 @@
             margin: 20px 0;
         }
 
-        /* Promise Page */
+        /* Promise Page - Not visible in HTML, but kept for completeness */
         .promise-container {
             background: rgba(255, 255, 255, 0.9);
             padding: 40px;
@@ -338,7 +361,7 @@
             }
         }
 
-        /* Peace Offering Page */
+        /* Peace Offering Page - Not visible in HTML, but kept for completeness */
         .offering-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -404,272 +427,93 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            /* General container padding adjustment */
+            .page {
+                padding: 100px 10px 40px 10px; /* More top padding to account for fixed nav */
+            }
+
+            /* Home Page H1 */
             .home-content h1 {
                 font-size: 2.5rem;
             }
             
+            /* Home Page Paragraph */
+            .home-content p {
+                 font-size: 1.2rem;
+            }
+
+            /* Buttons - stack them nicely */
+            .home-content .cute-button, 
+            .apology-content .cute-button, 
+            .apology-content .hug-button {
+                 width: 100%;
+                 margin: 5px 0; /* Stack vertically with some space */
+                 padding: 12px 20px;
+                 font-size: 1rem;
+            }
+
+            /* Override inline margin for stacking */
+            .home-content button[style*="margin-left"], 
+            .apology-content button[style*="margin-left"] {
+                 margin-left: 0 !important; 
+            }
+            
+            /* Nav bar adjustments */
+            nav {
+                top: 10px;
+                padding: 8px 10px;
+            }
+
             .nav-links {
-                gap: 10px;
+                gap: 5px;
+                flex-wrap: wrap; /* Allow links to wrap if needed */
             }
             
             .nav-links a {
-                padding: 6px 12px;
-                font-size: 0.9rem;
+                padding: 6px 10px;
+                font-size: 0.8rem;
             }
             
-            .apology-content {
+            /* Main content wrappers */
+            .apology-content, .cat-apology-container, .home-content {
                 padding: 20px;
-                margin: 0 10px;
+                margin: 0 auto; /* Center the content blocks */
             }
+            
+            /* Apology Page H2 */
+            .apology-content h2 {
+                font-size: 2rem;
+            }
+
+            /* Apology Text */
+            .apology-text {
+                 font-size: 1rem;
+            }
+            
+            /* Sorry GIF / Emoji Container */
+            .sorry-gif {
+                 width: 150px;
+                 height: 150px;
+                 font-size: 3rem;
+            }
+            
+            /* Cat Apology */
+            .cat-apology-container h2 {
+                font-size: 2rem !important;
+            }
+
+            .cat-with-flowers img {
+                width: 250px; /* Slightly smaller image on mobile */
+                margin: 0 auto;
+            }
+            
+            /* Flower Borders */
+            .flower-border {
+                font-size: 1.5rem; /* Smaller flowers */
+            }
+            .flower-border:nth-child(2) { top: 10px; left: 10px; }
+            .flower-border:nth-child(3) { top: 10px; right: 10px; }
+            .flower-border:nth-child(4) { bottom: 10px; left: 10px; }
+            .flower-border:nth-child(5) { bottom: 10px; right: 10px; }
         }
     </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
- </head>
- <body>
-  <div class="hearts" id="hearts"></div><!-- Cute decorative elements -->
-  <div class="flower-border">
-   🌸
-  </div>
-  <div class="flower-border right">
-   🌺
-  </div>
-  <div class="flower-border bottom">
-   🌻
-  </div>
-  <div class="flower-border bottom right">
-   🌷
-  </div><!-- Home Page -->
-  <div id="home" class="page">
-   <div class="home-content">
-    <h1 id="main-title">I'm Sorry Cutie 💕</h1>
-    <p>Hey 🦋 <span id="bestie-name"></span></p><button class="cute-button" onclick="showPage('apology')"> Read My Apology 💌 </button> <button class="cute-button" onclick="showPage('cat-apology')" style="margin-left: 10px;"> Cat's Apology 🐱💐 </button>
-   </div>
-  </div><!-- Apology Page -->
-  <div id="apology" class="page hidden">
-   <div class="apology-content">
-    <h2>I'm Really Sorry! 🥲</h2>
-    <div class="sorry-gif">
-     😣
-    </div>
-    <div class="apology-text" id="apology-message">
-     I'm really sorry cutie, about yesterday's misunderstanding ! 💕
-    </div><button class="hug-button" onclick="showForgiveness()"> Do You Forgive Me?  </button> <button class="cute-button" onclick="showPage('cat-apology')" style="margin-left: 10px;"> Cat's Apology 🐱💐 </button>
-   </div>
-    <div id="forgiveness-msg" class="forgiveness-message">
-     <h3 style="color: #ff6b9d;">Yay! We're Good! 🎉</h3>
-     <p>Thank you for forgiving me!✨</p>
-    </div>
-   </div>
-  </div><!-- Cat Apology Page -->
-  <div id="cat-apology" class="page hidden">
-   <div class="cat-apology-container">
-    <h2 style="color: #ff6b9d; font-size: 2.5rem; margin-bottom: 20px;">A Special Apology From My Cat 🐱</h2>
-    <div class="cat-with-flowers">
-     <img src="unnamed.jpg" width="300px" alt="cat-apology">
-    </div>
-    <div class="cat-speech" id="cat-message">
-    Even this little kitty wants to say sorry! She brought you these beautiful flowers 💕
-    </div>
-    <div style="font-size: 2rem; margin: 20px 0;">
-     🌸🌺🌻🌷🌹
-    </div><button class="cute-button" onclick="showPage('home')"> Back to Home 🏠 </button>
-   </div>
-  </div>
-  <script>
-        // Default configuration
-        const defaultConfig = {
-            main_title: "I'm Sorry Cutie 💕",
-            bestie_name: "bestie",
-            apology_message: "I messed up and I'm really sorry! You mean everything to me and I feel awful. Please forgive me? 🥺💕",
-            cat_message: "Meow meow! Even this little kitty wants to say sorry! I brought you these beautiful flowers to show how much you mean to us! Purr-lease forgive? 🥺💕"
-        };
-
-        // Page navigation
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.add('hidden');
-            });
-            
-            // Show selected page
-            document.getElementById(pageId).classList.remove('hidden');
-        }
-
-        // Interactive functions
-        function selectOffering(card) {
-            // Remove selection from other cards
-            document.querySelectorAll('.offering-card').forEach(c => {
-                c.style.background = 'rgba(255, 255, 255, 0.9)';
-            });
-            
-            // Highlight selected card
-            card.style.background = 'linear-gradient(45deg, #ff9a9e, #fecfef)';
-            
-            // Add bounce animation
-            card.style.animation = 'bounce 0.6s ease';
-            setTimeout(() => {
-                card.style.animation = '';
-            }, 600);
-        }
-
-        function showForgiveness() {
-            const msg = document.getElementById('forgiveness-msg');
-            msg.style.display = 'block';
-            
-            // Create celebration hearts
-            createCelebrationHearts();
-        }
-
-        function sendHug() {
-            // Create a big heart animation
-            const hugHeart = document.createElement('div');
-            hugHeart.innerHTML = '💖';
-            hugHeart.style.position = 'fixed';
-            hugHeart.style.fontSize = '5rem';
-            hugHeart.style.left = '50%';
-            hugHeart.style.top = '50%';
-            hugHeart.style.transform = 'translate(-50%, -50%) scale(0)';
-            hugHeart.style.zIndex = '9999';
-            hugHeart.style.pointerEvents = 'none';
-            hugHeart.style.transition = 'all 0.8s ease';
-            
-            document.body.appendChild(hugHeart);
-            
-            setTimeout(() => {
-                hugHeart.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 100);
-            
-            setTimeout(() => {
-                hugHeart.style.transform = 'translate(-50%, -50%) scale(0)';
-                hugHeart.style.opacity = '0';
-            }, 1500);
-            
-            setTimeout(() => {
-                document.body.removeChild(hugHeart);
-            }, 2300);
-        }
-
-        function createCelebrationHearts() {
-            for (let i = 0; i < 25; i++) {
-                setTimeout(() => {
-                    createFloatingElement();
-                }, i * 80);
-            }
-        }
-
-        function catHug() {
-            // Create purring hearts animation
-            const catContainer = document.querySelector('.cat-with-flowers');
-            catContainer.style.animation = 'none';
-            catContainer.style.transform = 'scale(1.2)';
-            
-            // Create floating hearts around the cat
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.innerHTML = '💕';
-                    heart.style.position = 'absolute';
-                    heart.style.fontSize = '2rem';
-                    heart.style.left = (Math.random() * 100) + '%';
-                    heart.style.top = '50%';
-                    heart.style.transform = 'translateY(-50%)';
-                    heart.style.animation = 'floatUp 3s ease-out forwards';
-                    heart.style.pointerEvents = 'none';
-                    heart.style.zIndex = '1000';
-                    
-                    document.getElementById('cat-apology').appendChild(heart);
-                    
-                    setTimeout(() => {
-                        if (heart.parentNode) {
-                            heart.parentNode.removeChild(heart);
-                        }
-                    }, 3000);
-                }, i * 100);
-            }
-            
-            // Reset cat animation
-            setTimeout(() => {
-                catContainer.style.animation = 'catBounce 2s ease-in-out infinite';
-                catContainer.style.transform = 'scale(1)';
-            }, 2000);
-        }
-
-        // Floating hearts and flowers animation
-        function createFloatingElement() {
-            const element = document.createElement('div');
-            const elements = ['💕', '💖', '💗', '💝', '💘', '🌸', '🌺', '🌻', '🌷', '🌹'];
-            const randomElement = elements[Math.floor(Math.random() * elements.length)];
-            
-            if (['💕', '💖', '💗', '💝', '💘'].includes(randomElement)) {
-                element.className = 'heart';
-            } else {
-                element.className = 'floating-element';
-            }
-            
-            element.innerHTML = randomElement;
-            element.style.left = Math.random() * 100 + '%';
-            element.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            element.style.animationDelay = Math.random() * 2 + 's';
-            
-            document.getElementById('hearts').appendChild(element);
-            
-            setTimeout(() => {
-                if (element.parentNode) {
-                    element.parentNode.removeChild(element);
-                }
-            }, 10000);
-        }
-
-        // Create floating elements periodically
-        setInterval(createFloatingElement, 1500);
-
-        // Element SDK implementation
-        async function onConfigChange(config) {
-            const mainTitle = config.main_title || defaultConfig.main_title;
-            const bestieName = config.bestie_name || defaultConfig.bestie_name;
-            const apologyMessage = config.apology_message || defaultConfig.apology_message;
-            const catMessage = config.cat_message || defaultConfig.cat_message;
-
-            document.getElementById('main-title').textContent = mainTitle;
-            document.getElementById('bestie-name').textContent = bestieName;
-            document.getElementById('apology-message').textContent = apologyMessage;
-            document.getElementById('cat-message').textContent = catMessage;
-        }
-
-        function mapToCapabilities(config) {
-            return {
-                recolorables: [],
-                borderables: [],
-                fontEditable: undefined,
-                fontSizeable: undefined
-            };
-        }
-
-        function mapToEditPanelValues(config) {
-            return new Map([
-                ["main_title", config.main_title || defaultConfig.main_title],
-                ["bestie_name", config.bestie_name || defaultConfig.bestie_name],
-                ["apology_message", config.apology_message || defaultConfig.apology_message],
-                ["cat_message", config.cat_message || defaultConfig.cat_message]
-            ]);
-        }
-
-        // Initialize Element SDK
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities,
-                mapToEditPanelValues
-            });
-        }
-
-        // Initialize with some floating elements
-        for (let i = 0; i < 8; i++) {
-            setTimeout(createFloatingElement, i * 800);
-        }
-    </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ed0e53c55d4466',t:'MTc2MzE5MTk2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
